@@ -1,22 +1,22 @@
-document.getElementById("userForm").addEventListener("submit", function (event) {
-  event.preventDefault();
+document.getElementById("voteForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
   const name = document.getElementById("name").value.trim();
-  const age = document.getElementById("age").value.trim();
+  const age = parseInt(document.getElementById("age").value.trim());
 
-  if (!name || !age) {
+  if (!name || isNaN(age)) {
     alert("Please enter valid details.");
     return;
   }
 
   new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (parseInt(age) >= 18) {
+      if (age > 18) {
         resolve();
       } else {
         reject();
       }
-    }, 4000); // 4-second delay
+    }, 4000);
   })
     .then(() => {
       alert(`Welcome, ${name}. You can vote.`);
